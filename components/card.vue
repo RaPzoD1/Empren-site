@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-card
+      overlay
       :title="feature.name"
       :img-src="feature.catImg"
       :img-alt="feature.category"
@@ -48,6 +49,9 @@ export default {
 }
 </script>
 <style scoped>
+b-card {
+  color: black;
+}
 .p-size {
   font-size: 10px;
 }

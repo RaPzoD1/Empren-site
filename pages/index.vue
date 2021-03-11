@@ -4,7 +4,7 @@
     <h2 class="mt-4 text-center">Ultimos Emprendimientos Agregados</h2>
     <Featured :featured="featuredList" />
     <div class="d-flex justify-content-center">
-    <b-btn class="mt-4 text-center">Ver mas</b-btn>
+    <b-btn class="mt-4 text-center" @click.prevent="seeMore">Ver mas</b-btn>
     </div>
   </div>
 </template>
@@ -20,20 +20,25 @@ export default {
   },
   computed: {
     ...mapGetters({
-      business: 'getBusiness'
+      businesses: 'getBusinesses'
     }),
     hasFeatured () {
-      return this.business.length > 0
+      return this.businesses.length > 0
     },
     featuredList () {
-      return this.business.slice(this.business.length - 6, this.business.length)
+      return this.businesses.slice(this.businesses.length - 6, this.businesses.length)
     }
   },
   async mounted () {
     try {
-      await this.$store.dispatch('bindBusiness')
+      await this.$store.dispatch('fetchAllBusinesses')
     } catch (e) {
       console.error(e)
+    }
+  },
+  methods: {
+    seeMore () {
+      this.$router.push('/search')
     }
   }
 }

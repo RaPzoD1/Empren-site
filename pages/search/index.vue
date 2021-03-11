@@ -1,23 +1,25 @@
 <template>
-  <div>
-    <h2 class="mt-4 text-center">Todos los emprendimientos</h2>
-    <Featured :featured="business" />
+  <div v-if="businesses.length">
+    <Filters />
+    <Featured :featured="filteredBusinesses" />
   </div>
 </template>
 <script>
 import Featured from '@/components/featured.vue'
+import Filters from '@/components/filter.vue'
 import { mapGetters } from 'vuex'
 export default {
   name: 'index',
-  components: { Featured },
+  components: { Featured, Filters },
   computed: {
     ...mapGetters({
-      business: 'getBusiness'
+      businesses: 'getBusinesses',
+      filteredBusinesses: 'getFilteredBusinesses'
     })
   },
   async mounted () {
     try {
-      await this.$store.dispatch('bindBusiness')
+      await this.$store.dispatch('fetchAllBusinesses')
     } catch (e) {
       console.error(e)
     }
