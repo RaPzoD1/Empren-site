@@ -1,27 +1,23 @@
 <template>
   <div>
-    <b-card
-      overlay
-      :title="feature.name"
-      :img-src="feature.catImg"
-      :img-alt="feature.category"
-      img-top
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-4 mr-1clea bg-info"
-      text-variant="white"
-    >
-      <b-card-text class="p-1">
-        {{ feature.description }}
-      </b-card-text>
-      <b-card-footer class="pt-1 pb-1">
-        <div v-if="hasSocial">
-          <p class="p-size mb-1">Redes Sociales:</p>
-          <a v-if="hasFacebook" :href="hasFacebook" target="_blank"><img class="img-size " src="../assets/icons/Facebook.png" alt="facebook"/></a>
-          <a v-if="hasInstagram" :href="hasInstagram" target="_blank"><img class="img-size " src="../assets/icons/Instagram.png" alt="instagram"/></a>
+    <div class="card bg-dark card-size m-2">
+      <img class="card-img" :src="feature.catImg" alt="Card image">
+      <div class="card-img-overlay">
+        <div class="d-flex justify-content-center">
+          <h5 class="card-title text-center font-weight-bold">
+            {{ feature.name }}
+          </h5>
         </div>
-      </b-card-footer>
-    </b-card>
+        <p class="card-text">
+          Ubicacion: {{ feature.location }}
+        </p>
+        <div>
+          <p class="card-text">
+            Categoria: {{ feature.category }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -49,8 +45,17 @@ export default {
 }
 </script>
 <style scoped>
-b-card {
-  color: black;
+h5 {
+  font-size: 2vw;
+}
+.card-size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 325px;
+  color: white;
+  /* height: 200px; */
 }
 .p-size {
   font-size: 10px;
